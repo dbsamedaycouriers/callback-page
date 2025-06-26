@@ -1,46 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>Callback</title>
   <meta charset="UTF-8" />
-  <title>Login Success</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      padding: 40px;
-      background-color: #f6f8fa;
-    }
-    .box {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      display: inline-block;
-    }
-  </style>
 </head>
 <body>
-  <div class="box">
-    <h1>✅ Login Successful!</h1>
-    <p>Welcome to DBS Same Day Couriers!</p>
-    <p id="user-info"></p>
-  </div>
+  <h1>Welcome to DB Sameday Couriers</h1>
+  <p id="message">Checking login...</p>
 
   <script>
-    function parseToken() {
-      const hash = window.location.hash.substring(1);
-      const params = new URLSearchParams(hash);
-      const idToken = params.get("id_token") || params.get("access_token");
+    // Parse the URL hash to extract the token
+    const hash = window.location.hash.substring(1);
+    const params = new URLSearchParams(hash);
 
-      if (idToken) {
-        document.getElementById("user-info").innerText = "Authentication token received.";
-        // Optional: parse JWT and show more info
-      } else {
-        document.getElementById("user-info").innerText = "No token found. Please try logging in again.";
-      }
+    const idToken = params.get("id_token");
+    const accessToken = params.get("access_token");
+
+    if (idToken || accessToken) {
+      document.getElementById("message").innerText = "Login successful! Token received.";
+      // Optional: Store tokens in localStorage or cookies
+    } else {
+      document.getElementById("message").innerText = "No token found. Please try logging in again.";
     }
-
-    window.onload = parseToken;
   </script>
 </body>
 </html>
