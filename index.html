@@ -1,11 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Login Successful</title>
+  <meta charset="UTF-8" />
+  <title>Login Success</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 40px;
+      background-color: #f6f8fa;
+    }
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: inline-block;
+    }
+  </style>
 </head>
 <body>
-  <h1>✅ You have successfully logged in!</h1>
-  <p>You can now return to the main site.</p>
+  <div class="box">
+    <h1>✅ Login Successful!</h1>
+    <p>Welcome to DBS Same Day Couriers!</p>
+    <p id="user-info"></p>
+  </div>
+
+  <script>
+    function parseToken() {
+      const hash = window.location.hash.substring(1);
+      const params = new URLSearchParams(hash);
+      const idToken = params.get("id_token") || params.get("access_token");
+
+      if (idToken) {
+        document.getElementById("user-info").innerText = "Authentication token received.";
+        // Optional: parse JWT and show more info
+      } else {
+        document.getElementById("user-info").innerText = "No token found. Please try logging in again.";
+      }
+    }
+
+    window.onload = parseToken;
+  </script>
 </body>
 </html>
