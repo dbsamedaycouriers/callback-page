@@ -1,27 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Callback</title>
-  <meta charset="UTF-8" />
-</head>
-<body>
-  <h1>Welcome to DB Sameday Couriers</h1>
-  <p id="message">Checking login...</p>
-
-  <script>
-    // Parse the URL hash to extract the token
-    const hash = window.location.hash.substring(1);
-    const params = new URLSearchParams(hash);
-
-    const idToken = params.get("id_token");
-    const accessToken = params.get("access_token");
-
-    if (idToken || accessToken) {
-      document.getElementById("message").innerText = "Login successful! Token received.";
-      // Optional: Store tokens in localStorage or cookies
-    } else {
-      document.getElementById("message").innerText = "No token found. Please try logging in again.";
-    }
-  </script>
-</body>
-</html>
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAYGLUK6_3ZB6v4priFUsyu3KvLsIErmBc",
+  authDomain: "dbsamedaycouriers.firebaseapp.com",
+  projectId: "dbsamedaycouriers",
+  storageBucket: "dbsamedaycouriers.firebasestorage.app",
+  messagingSenderId: "543299337122",
+  appId: "1:543299337122:web:4bc78bd824371ea46f90fb",
+  measurementId: "G-2VDD4142SS"
+};
