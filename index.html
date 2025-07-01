@@ -1,10 +1,74 @@
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAYGLUK6_3ZB6v4priFUsyu3KvLsIErmBc",
-  authDomain: "dbsamedaycouriers.firebaseapp.com",
-  projectId: "dbsamedaycouriers",
-  storageBucket: "dbsamedaycouriers.firebasestorage.app",
-  messagingSenderId: "543299337122",
-  appId: "1:543299337122:web:4bc78bd824371ea46f90fb",
-  measurementId: "G-2VDD4142SS"
-};
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - DB Web</title>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+
+  <script>
+    // ✅ Your actual Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyAzWxo-8UJB_x12-gbgapgx5Otn2CjwXEc",
+      authDomain: "dbsamedaycouriers.firebaseapp.com",
+      projectId: "dbsamedaycouriers",
+      appId: "1:543299337122:web:exampleappid" // optional
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+</head>
+<body>
+  <h1>Login to DB Web</h1>
+
+  <input type="email" id="email" placeholder="Email" /><br /><br />
+  <input type="password" id="password" placeholder="Password" /><br /><br />
+  <button onclick="login()">Login</button>
+  <button onclick="signup()">Sign Up</button>
+  <button onclick="logout()">Logout</button>
+
+  <p id="message" style="color:red;"></p>
+
+  <script>
+    function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          document.getElementById("message").innerText = "✅ Login successful!";
+        })
+        .catch((error) => {
+          document.getElementById("message").innerText = error.message;
+        });
+    }
+
+    function signup() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          document.getElementById("message").innerText = "✅ Account created!";
+        })
+        .catch((error) => {
+          document.getElementById("message").innerText = error.message;
+        });
+    }
+
+    function logout() {
+      firebase.auth().signOut()
+        .then(() => {
+          document.getElementById("message").innerText = "🚪 Logged out.";
+        })
+        .catch((error) => {
+          document.getElementById("message").innerText = error.message;
+        });
+    }
+  </script>
+</body>
+</html>
